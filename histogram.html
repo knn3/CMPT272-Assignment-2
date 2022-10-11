@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Grade Histogram</title>
+        <link rel="stylesheet" href="./histogram.css">
+        <script src="calculate.js"></script>
+    </head>
+    
+    <body onload="init()">
+        <h1>Histogram Generator</h1>
+        <aside>
+            <input type="file" name="file" id="fileInput">
+        </aside>
+
+        <section>
+            <h3>Lower bounds</h3>
+            <table>
+                <tr>
+                    <td>Max</td>
+                    <td>
+                        <input type="number" value="100" max="100" min="100">
+                    </td>
+                </tr>
+                <tr>
+                    <td>A+</td>
+                    <td>
+                        <input id="A" type="number" value="95" max="100" min="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>
+                        <input type="number">
+                    </td>
+                </tr>
+                <tr>
+                    <td>A-</td>
+                    <td>
+                        <input type="number">
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h3>Histogram</h3>
+        </section>
+
+        <section>
+            <h3>Stats</h3>
+        </section>
+    </body>
+</html>
