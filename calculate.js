@@ -7,22 +7,11 @@ function init() {
 function handleFileSelect(event) {
   const reader = new FileReader();
   reader.onload = handleFileLoad;
-  reader.readAsText(event.target.files[0]);
-}
-
-function handleFileLoad(event) {
-  console.log(event);
-//   document.getElementById("fileContent").textContent = event.target.result;
+    reader.readAsText(event.target.files[0]);
+    console.log(reader);
 }
 
 function findValueOf(letter) {
-    // let grade = document.querySelector("#letter")
-
-    // grade.addEventListener("input", function () {
-    //     let val = grade.nodeValue
-    //     console.log(val)
-    // })
-
     let grade = document.getElementById(letter).value;
     console.log(grade)
     return grade;
@@ -38,3 +27,38 @@ for (let i = 1; i < input.length; i++){
             
     })
 }
+
+function handleFileLoad(event) {
+  console.log(event);
+//   document.getElementById("fileContent").textContent = event.target.result;
+    let data = event.target.result
+    var grades = data.match(/[+-]?\d+(\.\d+)?/g);
+    console.log(grades)
+    console.log(input)
+    
+    // var histogram = document.querySelectorAll()
+
+    for (let i = 0; i < grades.length; i++){
+        for (let j = 1; j < input.length; j++){
+            if (
+              parseFloat(grades[i]) >=
+              parseFloat(document.getElementById(input[j].id).value)
+            ) {
+                console.log(grades[i])
+                document.getElementById(j).innerHTML += "O";
+                break;
+            }
+        }
+
+
+        // if (parseFloat(grades[i]) >= parseFloat(document.getElementById("A+").value)) {
+        //   document.getElementById("0").innerHTML += "O";
+        // } else if (parseFloat(grades[i]) >= parseFloat(document.getElementById("A").value)) {
+        //   document.getElementById("1").innerHTML += "O";
+        // } else if (parseFloat(grades[i]) >= parseFloat(document.getElementById("A-").value)) {
+        //     document.getElementById("2").innerHTML += "O";
+        // }
+    }
+}
+
+
