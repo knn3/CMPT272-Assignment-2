@@ -28,11 +28,13 @@ for (let i = 1; i < input.length; i++){
     })
 }
 
+
 function handleFileLoad(event) {
-  console.log(event);
 //   document.getElementById("fileContent").textContent = event.target.result;
-    let data = event.target.result
-    var grades = data.match(/[+-]?\d+(\.\d+)?/g);
+    data = event.target.result;
+
+    grades = data.match(/[+-]?\d+(\.\d+)?/g);
+    
     console.log(data)
     console.log(grades)
     console.log(input)
@@ -64,7 +66,6 @@ function handleFileLoad(event) {
               parseFloat(grades[i]) >=
               parseFloat(document.getElementById(input[j].id).value)
             ) {
-                console.log(grades[i])
                 document.getElementById(j).innerHTML += "O";
                 break;
             }
@@ -80,5 +81,27 @@ function handleFileLoad(event) {
         // }
     }
 }
+
+document.getElementById("A+").addEventListener('change', function () {
+    for (let i = 1; i < input.length; i++){
+        document.getElementById(i).innerHTML = "";
+    }
+
+    for (let i = 0; i < grades.length; i++) {
+        for (let j = 1; j < input.length; j++) {
+            if (
+                parseFloat(grades[i]) >=
+                parseFloat(document.getElementById(input[j].id).value)
+            ) {
+                document.getElementById(j).innerHTML += "O";
+                break;
+            }
+        }
+    }
+
+})
+
+
+
 
 
