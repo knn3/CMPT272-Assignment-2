@@ -33,9 +33,29 @@ function handleFileLoad(event) {
 //   document.getElementById("fileContent").textContent = event.target.result;
     let data = event.target.result
     var grades = data.match(/[+-]?\d+(\.\d+)?/g);
+    console.log(data)
     console.log(grades)
     console.log(input)
-    
+
+
+    // let pair = data.split('\r\n')
+    // console.log(pair)
+
+    // num = pair[1].match(/[+-]?\d+(\.\d+)?/g);
+    // console.log(num)
+
+    // if (num == grades[0]) {
+    //     console.log("It works")
+    //     console.log(pair[1]) // pair of name and grade with "," 
+    //     console.log(pair[1].split(",")[0].trim()) // return the name and the grade
+    // }
+    var nums = grades.map((grade) => {
+        return parseFloat(grade);
+    });
+    var max = Math.max(...nums);
+
+    console.log(nums.indexOf(max))
+
     // var histogram = document.querySelectorAll()
 
     for (let i = 0; i < grades.length; i++){
