@@ -40,7 +40,7 @@ function handleFileLoad(event) {
     console.log(input)
 
 
-    // let pair = data.split('\r\n')
+    let pair = data.split('\r\n')
     // console.log(pair)
 
     // num = pair[1].match(/[+-]?\d+(\.\d+)?/g);
@@ -49,15 +49,22 @@ function handleFileLoad(event) {
     // if (num == grades[0]) {
     //     console.log("It works")
     //     console.log(pair[1]) // pair of name and grade with "," 
-    //     console.log(pair[1].split(",")[0].trim()) // return the name and the grade
+        console.log(pair[1].split(",")[0].trim()) // return the name and the grade
     // }
     var nums = grades.map((grade) => {
         return parseFloat(grade);
     });
     var max = Math.max(...nums);
+    var maxIndex = nums.indexOf(max);
+    document.getElementById("Highest").innerHTML = pair[maxIndex + 1].split(",")[0].trim() + " (" + max + "%)";
 
-    console.log(nums.indexOf(max))
+    var min = Math.min(...nums);
+    var minIndex = nums.indexOf(min);
+    document.getElementById("Lowest").innerHTML = pair[minIndex + 1].split(",")[0].trim() + " (" + min + "%)";
 
+    document.getElementById("Mean").innerHTML = mean(nums).toPrecision(4);
+
+    document.getElementById("Median").innerHTML = median(nums);
     // var histogram = document.querySelectorAll()
 
     for (let i = 0; i < grades.length; i++){
@@ -80,6 +87,26 @@ function handleFileLoad(event) {
         //     document.getElementById("2").innerHTML += "O";
         // }
     }
+}
+
+function median(nums) {
+    nums.sort(function (a, b) { return a - b; });
+    console.log(nums)
+    console.log(Math.floor(nums.length / 2));
+    if (nums.length % 2 == 1) {
+        return nums[Math.floor(nums.length / 2)]
+    }
+    else {
+        return (nums[(nums.length / 2) - 1] + nums[(nums.length / 2)]) / 2
+    }
+}
+
+function mean(nums) {
+    let sum = 0;
+    for (let i = 0; i < nums.length; i++){
+        sum += nums[i];
+    }
+    return sum / nums.length;
 }
 
 for (let k = 1; k < input.length; k++){
