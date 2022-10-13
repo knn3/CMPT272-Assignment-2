@@ -82,24 +82,26 @@ function handleFileLoad(event) {
     }
 }
 
-document.getElementById("A+").addEventListener('change', function () {
-    for (let i = 1; i < input.length; i++){
+for (let k = 1; k < input.length; k++){
+    document.getElementById(input[k].id).addEventListener("change", function () {
+      for (let i = 1; i < input.length; i++) {
         document.getElementById(i).innerHTML = "";
-    }
+      }
 
-    for (let i = 0; i < grades.length; i++) {
+      for (let i = 0; i < grades.length; i++) {
         for (let j = 1; j < input.length; j++) {
-            if (
-                parseFloat(grades[i]) >=
-                parseFloat(document.getElementById(input[j].id).value)
-            ) {
-                document.getElementById(j).innerHTML += "O";
-                break;
-            }
+          if (
+            parseFloat(grades[i]) >=
+            parseFloat(document.getElementById(input[j].id).value)
+          ) {
+            document.getElementById(j).innerHTML += "O";
+            break;
+          }
         }
-    }
+      }
+    });
+}
 
-})
 
 
 
