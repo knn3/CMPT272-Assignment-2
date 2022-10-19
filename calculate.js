@@ -28,10 +28,8 @@ for (let i = 1; i < input.length; i++){
     }
     else {
       // handle error
-
-    }
-      
-            
+      alert("Invalid input! Please try again!")
+    }         
   })
 }
 
