@@ -17,13 +17,22 @@ function findValueOf(letter) {
 
 var input = document.querySelectorAll("input[type=number]")
 for (let i = 1; i < input.length; i++){
-    input[i].addEventListener("change", function () {
-        if (input[i-1].id != "max")
-            document.getElementById(input[i - 1].id).min = findValueOf(input[i].id);
-        if (i + 1 < length)
-            document.getElementById(input[i + 1].id).max = findValueOf(input[i].id);
+  input[i].addEventListener("change", function () {
+    var upper = document.getElementById(input[i - 1].id).value;
+    var lower = document.getElementById(input[i + 1].id).value;
+    if (this.value.length && this.value - upper <= 0 && this.value - lower >= 0) {
+      if (input[i - 1].id != "max")
+        document.getElementById(input[i - 1].id).min = findValueOf(input[i].id);
+      if (i + 1 < length)
+        document.getElementById(input[i + 1].id).max = findValueOf(input[i].id);
+    }
+    else {
+      // handle error
+
+    }
+      
             
-    })
+  })
 }
 
 
@@ -82,21 +91,32 @@ function mean(nums) {
     return sum / nums.length;
 }
 
+grades = undefined;
+
 for (let k = 1; k < input.length; k++){
-    document.getElementById(input[k].id).addEventListener("change", function () {
+  document.getElementById(input[k].id).addEventListener("change", function () {
+    var upper = document.getElementById(input[k - 1].id).value
+    var lower = document.getElementById(input[k + 1].id).value
+    
+    if (this.value.length && (this.value - upper <= 0) && (this.value - lower >= 0)) {
       for (let i = 1; i < input.length; i++) {
         document.getElementById(i).innerHTML = "";
       }
-
-      for (let i = 0; i < grades.length; i++) {
-        for (let j = 1; j < input.length; j++) {
-          if (parseFloat(grades[i]) >= parseFloat(document.getElementById(input[j].id).value)) {
-            document.getElementById(j).innerHTML += "👨‍🎓";
-            break;
+      if (grades) {
+        for (let i = 0; i < grades.length; i++) {
+          for (let j = 1; j < input.length; j++) {
+            if (
+              parseFloat(grades[i]) >=
+              parseFloat(document.getElementById(input[j].id).value)
+            ) {
+              document.getElementById(j).innerHTML += "👨‍🎓";
+              break;
+            }
           }
         }
       }
-    });
+    }
+  });
 }
 
 
