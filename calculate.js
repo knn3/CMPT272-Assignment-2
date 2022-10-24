@@ -19,7 +19,12 @@ var input = document.querySelectorAll("input[type=number]")
 for (let i = 1; i < input.length; i++){
   input[i].addEventListener("change", function () {
     var upper = document.getElementById(input[i - 1].id).value;
-    var lower = document.getElementById(input[i + 1].id).value;
+
+    var lower = -1;
+    if (i + 1 < length) {
+      lower = document.getElementById(input[i + 1].id).value;
+    } 
+
     if (this.value.length && this.value - upper < 0 && this.value - lower > 0) {
       if (input[i - 1].id != "max")
         document.getElementById(input[i - 1].id).min = findValueOf(input[i].id);
@@ -94,7 +99,10 @@ grades = undefined;
 for (let k = 1; k < input.length; k++){
   document.getElementById(input[k].id).addEventListener("change", function () {
     var upper = document.getElementById(input[k - 1].id).value
-    var lower = document.getElementById(input[k + 1].id).value
+    var lower = -1;
+    if (k + 1 < length) {
+      lower = document.getElementById(input[k + 1].id).value;
+    } 
     
     if (this.value.length && (this.value - upper < 0) && (this.value - lower > 0)) {
       for (let i = 1; i < input.length; i++) {
